@@ -1,1 +1,1 @@
-# Project-Xtream-Hexagonic-Beat-Runner
+# Xtream Hexagonic Beat Runner
