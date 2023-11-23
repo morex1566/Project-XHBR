@@ -74,4 +74,8 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# End of https://www.toptal.com/developers/gitignore/api/unity
+# Ignore resources folder
+Assets/Resources/*
+
+# Ignore addressable resources folder
+Assets/AddressableResources/*
