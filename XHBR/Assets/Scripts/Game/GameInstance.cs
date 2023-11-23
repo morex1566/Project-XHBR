@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Game
 {
@@ -11,12 +13,13 @@ namespace Assets.Scripts.Game
     /// </summary>
     public partial class GameInstance : MonoBehaviour
     {
-        public static GameInstance                      GameManager;
+        public static GameInstance                                 GameManager;
 
-        [SerializeField] private AssetReference         fontAssetRef;
-        [SerializeField] private TMP_FontAsset          font;
+        private TMP_FontAsset                                      font;
+        [SerializeField] private AssetReferenceT<TMP_FontAsset>    fontAssetRef;
 
-        private AsyncOperationHandle                    addressableHandle;
+        private Task                                               LoadAssetAsyncOperationHandle;
+        private AsyncOperationHandle                               addressableHandle;
 
         private void Awake()
         {
@@ -32,42 +35,53 @@ namespace Assets.Scripts.Game
                 return;
             }
 
-            // Load font asset.
-            //if (!LoadAsset())
-            //{
-            //    Debug.LogError($"{nameof(fontAssetRef)} : Load {nameof(TMP_FontAsset)} is failed.");
-            //}
+            // Load font.
+            LoadAssetAsyncOperationHandle = LoadAssetAsync();
+        }
+
+        private async void Start()
+        {
+            await LoadAssetAsyncOperationHandle;
+            if (LoadAssetAsyncOperationHandle.IsCompleted)
+            {
+                SceneManager.LoadScene("Title");
+            }
         }
 
         private void OnDestroy()
         {
-            //Addressables.Release(addressableHandle);
-            //font = null;
+            // Release font asset.
+            {
+                Addressables.Release(addressableHandle);
+                font = null;
+            }
         }
 
 
-        public bool LoadAsset()
+        public async Task LoadAssetAsync()
         {
-            var LoadAssetAsyncProc = Addressables.LoadAssetAsync<TMP_FontAsset>(fontAssetRef);
+            var loadAssetTask = new TaskCompletionSource<bool>();
 
-            LoadAssetAsyncProc.Task.Wait();
-
-            if (LoadAssetAsyncProc.Status == AsyncOperationStatus.Succeeded)
+            fontAssetRef.LoadAssetAsync().Completed += (AsyncOperationHandle<TMP_FontAsset> handle) =>
             {
-                addressableHandle = LoadAssetAsyncProc;
-                font = LoadAssetAsyncProc.Result;
+                addressableHandle = handle;
+                font = handle.Result;
 
-                return true;
-            }
+                loadAssetTask.SetResult(true);
+            };
 
-            return false;
+            await loadAssetTask.Task;
         }
     }
 
     // Properties and utls are here.
     public partial class GameInstance
     {
-        public TMP_FontAsset FontAsset { get; set; }
-        public static readonly string FontAssetName = nameof(font);
+        public TMP_FontAsset Font
+        {
+            get { return font; }
+            set { font = value; }
+        }
+        public static readonly string FontName = nameof(font);
     }
 }

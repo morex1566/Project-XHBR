@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Assets.Scripts.Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -67,7 +68,6 @@ namespace Assets.Scripts.Title
         {
             var loadAssetTask = new TaskCompletionSource<bool>();
 
-            
             iconAssetRef.LoadAssetAsync().Completed += (AsyncOperationHandle<Sprite> handle) =>
             {
                 addressableHandle = handle;

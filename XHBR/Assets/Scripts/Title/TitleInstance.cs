@@ -6,7 +6,7 @@ namespace Assets.Scripts.Title
     /// <br/> FEATURE : Provides utls function at title scene.
     /// <br/>           instance lifespan is as same as title scene.
     /// </summary>
-    public class TitleInstance : MonoBehaviour
+    public partial class TitleInstance : MonoBehaviour
     {
         private static TitleInstance                        instance;
         
@@ -40,5 +40,19 @@ namespace Assets.Scripts.Title
                 splashTimelineObject.SetActive(true);
             }
         }
+    }
+
+    /// <summary>
+    /// DESC : Properties and utls are here.
+    /// </summary>
+    public partial class TitleInstance
+    {
+        public GameObject SplashTimelineObj
+        {
+            get { return splashTimelineObj; }
+            set { splashTimelineObj = value; }
+        }
+        public static readonly string SplashTimelineObjName = nameof(splashTimelineObj);
+
     }
 }
