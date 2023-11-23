@@ -16,7 +16,17 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 3143987676b248e419c7f3d3ac873028
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 66f807a9ec32c6d4c8ed85c99fd48667
+    m_Address: Assets/AddressableResources/Font/NanumSquareNeo_Regular SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09c635962a2a36042b8f2650b582a4a9
+    m_Address: Assets/AddressableResources/Font/NanumSquareNeo_Regular_KOR.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ec322254074ece48a0e4e7dd836c486, type: 2}
   m_SchemaSet:

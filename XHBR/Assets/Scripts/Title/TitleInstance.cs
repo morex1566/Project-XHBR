@@ -9,10 +9,8 @@ namespace Assets.Scripts.Title
     public class TitleInstance : MonoBehaviour
     {
         private static TitleInstance                        instance;
-
-#pragma warning disable CS0649 // IMPORTANT : This prefab must be assigned in inspector.
-        [SerializeField] private GameObject                 splashTimelinePrefab;
-#pragma warning restore CS0649 
+        
+        [SerializeField] private GameObject                 splashTimelineObj;
 
         private void Awake()
         {
@@ -29,15 +27,15 @@ namespace Assets.Scripts.Title
             }
 
             // Check splash event instance is assigned.
-            if (splashTimelinePrefab == null)
+            if (splashTimelineObj == null)
             {
-                Debug.LogError($"{nameof(splashTimelinePrefab)} : Splash timeline prefab is not assigned. Please assign a prefab in inspector.");
+                Debug.LogError($"{nameof(splashTimelineObj)} : Splash timeline prefab is not assigned. Please assign a prefab in inspector.");
             }
         }
 
         private void Start()
         {
-            GameObject splashTimelineObject = Instantiate(splashTimelinePrefab);
+            GameObject splashTimelineObject = Instantiate(splashTimelineObj);
             {
                 splashTimelineObject.SetActive(true);
             }

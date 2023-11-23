@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba54087d9668af04baf2cb77e2eef4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  director: {fileID: 0}
+  recommendationMsgObj: {fileID: 1073795708029707809, guid: 21e2012ce900c8e4fb79a36cde4f6f2c,
+    type: 3}
+  recommendationMsgCpnt: {fileID: 0}
 --- !u!320 &7128845940761511026
 PlayableDirector:
   m_ObjectHideFlags: 0

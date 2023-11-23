@@ -1,23 +1,23 @@
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Playables;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Timeline;
 
 namespace Assets.Scripts.Title
 {
-    public class SplashTimelineController : MonoBehaviour
+    /// <summary>
+    /// FEATURE : Controls the title splash event.
+    /// </summary>
+    public partial class SplashTimelineController : MonoBehaviour
     {
-        [SerializeField] private Canvas canvas;
-        public Canvas Canvas
-        {
-            get { return canvas; }
-            set { canvas = value; }
-        }
+        [SerializeField] private Canvas                         canvas;
+        [SerializeField] private PlayableDirector               director;
+        [SerializeField] private GameObject                     recommendationMsgObj;
+        [SerializeField] private SplashRecommendationMsg        recommendationMsgCpnt;
 
-        [SerializeField] private PlayableDirector director;
-        public PlayableDirector Director
-        {
-            get { return director; }
-            set { director = value; }
-        }
+        private Task                                            LoadAssetAsyncOperationHandle;
 
         private void Awake()
         {
@@ -25,15 +25,61 @@ namespace Assets.Scripts.Title
             canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
             if (canvas == null)
             {
-                Debug.LogError($"{nameof(canvas)} : Canvas is not assigned. Please assign a canvas tag to 'MainCanvas'.");
+                Debug.LogError($"{nameof(canvas)} : {nameof(Canvas)} is missing.");
             }
 
             // Check timeline prefab is normal.
             director = GetComponent<PlayableDirector>();
             if (director == null)
             {
-                Debug.LogError($"{nameof(director)} : PlayableDirector is missing. Please use prefab again, or create a playableDirector component to use splash timeline assets.");
+                Debug.LogError($"{nameof(director)} : {nameof(PlayableDirector)} is missing.");
+            }
+
+            // Check splash img prefab.
+            if (recommendationMsgObj == null)
+            {
+                Debug.LogError($"{nameof(recommendationMsgObj)} : {nameof(GameObject)} is missing.");
+            }
+
+            // Instantiate game object.
+            GameObject obj = Instantiate(recommendationMsgObj);
+            {
+                obj.transform.SetParent(canvas.transform, false);
+
+                // Check splash img component.
+                recommendationMsgCpnt = obj.GetComponent<SplashRecommendationMsg>();
+                if (recommendationMsgCpnt == null)
+                {
+                    Debug.LogError($"{nameof(recommendationMsgCpnt)} : {nameof(SplashRecommendationMsg)} is missing.");
+                }
+
+                // Load icon sprite.
+                LoadAssetAsyncOperationHandle = recommendationMsgCpnt.LoadAssetAsync();
             }
         }
+
+        private async void Start()
+        {
+            await LoadAssetAsyncOperationHandle;
+            if (LoadAssetAsyncOperationHandle.IsCompleted)
+            {
+                director.Play();
+            }
+        }
+    }
+
+    // Properties and utls are here.
+    public partial class SplashTimelineController
+    {
+        public Canvas Canvas { get; set; }
+        public static readonly string CanvasName = nameof(canvas);
+
+
+        public PlayableDirector Director { get; set; }
+        public static readonly string DirectorName = nameof(director);
+
+
+        public GameObject RecommendationMsgObj { get; set; }
+        public static readonly string RecommendationMsgObjName = nameof(recommendationMsgObj);
     }
 }

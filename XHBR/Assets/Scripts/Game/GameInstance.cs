@@ -1,21 +1,29 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets.Scripts.Game
 {
     /// <summary>
     /// FEATURE : Singleton, manage all of instance class at game.
     /// </summary>
-    public class GameInstance : MonoBehaviour
+    public partial class GameInstance : MonoBehaviour
     {
-        private static GameInstance gameInstance;
+        public static GameInstance                      GameManager;
+
+        [SerializeField] private AssetReference         fontAssetRef;
+        [SerializeField] private TMP_FontAsset          font;
+
+        private AsyncOperationHandle                    addressableHandle;
 
         private void Awake()
         {
             // Make instance to singleton.
-            if (gameInstance == null)
+            if (GameManager == null)
             {
-                gameInstance = this;
+                GameManager = this;
                 DontDestroyOnLoad(this);
             }
             else
@@ -24,25 +32,42 @@ namespace Assets.Scripts.Game
                 return;
             }
 
-            // AddressableAssetSettings.BuildPlayerContent();
+            // Load font asset.
+            //if (!LoadAsset())
+            //{
+            //    Debug.LogError($"{nameof(fontAssetRef)} : Load {nameof(TMP_FontAsset)} is failed.");
+            //}
         }
 
-        private void Update()
+        private void OnDestroy()
         {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                SceneManager.LoadScene("Title");
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                SceneManager.LoadScene("Lobby");
-            }
-
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                SceneManager.LoadScene("InGame");
-            }
+            //Addressables.Release(addressableHandle);
+            //font = null;
         }
+
+
+        public bool LoadAsset()
+        {
+            var LoadAssetAsyncProc = Addressables.LoadAssetAsync<TMP_FontAsset>(fontAssetRef);
+
+            LoadAssetAsyncProc.Task.Wait();
+
+            if (LoadAssetAsyncProc.Status == AsyncOperationStatus.Succeeded)
+            {
+                addressableHandle = LoadAssetAsyncProc;
+                font = LoadAssetAsyncProc.Result;
+
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    // Properties and utls are here.
+    public partial class GameInstance
+    {
+        public TMP_FontAsset FontAsset { get; set; }
+        public static readonly string FontAssetName = nameof(font);
     }
 }

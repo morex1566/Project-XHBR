@@ -27,8 +27,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 09a9816589a0c8846bfa22ede18f42f9
-    m_Address: Images/Lobby_Splash_Headphone
+  - m_GUID: d435096fa59e4e1438b9fe6bd4526503
+    m_Address: Assets/AddressableResources/Images/Lobby_Splash_Headphone.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
