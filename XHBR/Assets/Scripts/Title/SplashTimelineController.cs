@@ -1,9 +1,6 @@
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.Playables;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.Timeline;
 
 namespace Assets.Scripts.Title
 {
@@ -12,12 +9,13 @@ namespace Assets.Scripts.Title
     /// </summary>
     public partial class SplashTimelineController : MonoBehaviour
     {
-        [SerializeField] private Canvas                                   canvas;
-        [SerializeField] private PlayableDirector                         director;
-        [SerializeField] private GameObject                               recommendationMsgObj;
-        [SerializeField] private SplashRcmdMsgController        _rcmdMsgControllerCpnt;
-
-        private Task                                            LoadAssetAsyncOperationHandle;
+        [SerializeField] private Canvas                                  canvas;
+        [SerializeField] private PlayableDirector                        director;
+        [SerializeField] private GameObject                              rcmdMsgPrfb;
+        [SerializeField] private SplashRcmdMsgController                 rcmdMsgControllerCpnt;
+                                                                         
+        private Task                                                     LoadAssetAsyncOperationHandle;
+        private GameObject                                               rcmdMsgObj;
 
         private void Awake()
         {
@@ -36,25 +34,25 @@ namespace Assets.Scripts.Title
             }
 
             // Check splash img prefab.
-            if (recommendationMsgObj == null)
+            if (rcmdMsgPrfb == null)
             {
-                Debug.LogError($"{nameof(recommendationMsgObj)} : {nameof(GameObject)} is missing.");
+                Debug.LogError($"{nameof(rcmdMsgPrfb)} : {nameof(GameObject)} is missing.");
             }
 
             // Instantiate game object.
-            GameObject obj = Instantiate(recommendationMsgObj);
+            rcmdMsgObj = Instantiate(rcmdMsgPrfb, canvas.transform, false);
             {
-                obj.transform.SetParent(canvas.transform, false);
-
                 // Check splash img component.
-                _rcmdMsgControllerCpnt = obj.GetComponent<SplashRcmdMsgController>();
-                if (_rcmdMsgControllerCpnt == null)
+                rcmdMsgControllerCpnt = rcmdMsgObj.GetComponent<SplashRcmdMsgController>();
+                if (rcmdMsgControllerCpnt == null)
                 {
-                    Debug.LogError($"{nameof(_rcmdMsgControllerCpnt)} : {nameof(SplashRcmdMsgController)} is missing.");
+                    Debug.LogError($"{nameof(rcmdMsgControllerCpnt)} : {nameof(SplashRcmdMsgController)} is missing.");
                 }
 
                 // Load icon sprite.
-                LoadAssetAsyncOperationHandle = _rcmdMsgControllerCpnt.LoadAssetAsync();
+                LoadAssetAsyncOperationHandle = rcmdMsgControllerCpnt.LoadAssetAsync();
+
+                rcmdMsgObj.SetActive(false);
             }
         }
 
@@ -65,6 +63,26 @@ namespace Assets.Scripts.Title
             {
                 director.Play();
             }
+        }
+
+        public void StartRcmdMsg()
+        {
+            rcmdMsgObj.SetActive(true);
+        }
+
+        public void FadeInRcmdMsg()
+        {
+
+        }
+
+        public void FadeOutRcmdMsg()
+        {
+
+        }
+
+        public void EndRcmdMsg()
+        {
+            rcmdMsgObj.SetActive(false);
         }
     }
 
@@ -79,7 +97,7 @@ namespace Assets.Scripts.Title
         public static readonly string DirectorName = nameof(director);
 
 
-        public GameObject RecommendationMsgObj { get; set; }
-        public static readonly string RecommendationMsgObjName = nameof(recommendationMsgObj);
+        public GameObject RecommendationMsgPrfb { get; set; }
+        public static readonly string RecommendationMsgPrfbName = nameof(rcmdMsgPrfb);
     }
 }

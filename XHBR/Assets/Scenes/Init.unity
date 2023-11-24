@@ -138,18 +138,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 978969639489248497, guid: ea3744bbbae980946870e929279cc978,
         type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222331708041490023, guid: ea3744bbbae980946870e929279cc978,
-        type: 3}
-      propertyPath: fontAssetRef.m_AssetGUID
-      value: 66f807a9ec32c6d4c8ed85c99fd48667
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222331708041490023, guid: ea3744bbbae980946870e929279cc978,
-        type: 3}
-      propertyPath: fontAssetReference.m_AssetGUID
-      value: 66f807a9ec32c6d4c8ed85c99fd48667
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7585575675865772191, guid: ea3744bbbae980946870e929279cc978,
         type: 3}

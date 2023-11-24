@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Assets.Scripts.Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,9 @@ namespace Assets.Scripts.Title
         [SerializeField] private AssetReferenceSprite       iconAssetRef;
         private string                                      msgString;
         private AsyncOperationHandle                        addressableHandle;
-
+        private GameObject                                  bckgObj;
+        private GameObject                                  iconObj;
+        private GameObject                                  msgObj;
 
         private void Awake()
         {
@@ -26,31 +29,40 @@ namespace Assets.Scripts.Title
             }
 
             // Check background img component.
-            bckgImg = transform.GetChild(0).GetComponent<Image>();
+            bckgObj = transform.GetChild(0).gameObject;
+            bckgImg = bckgObj.GetComponent<Image>();
             if (bckgImg == null)
             {
                 Debug.LogError($"{nameof(bckgImg)} : {nameof(Image)} is missing.");
             }
 
             // Check icon img component.
-            iconImg = transform.GetChild(1).GetComponent<Image>();
+            iconObj = transform.GetChild(1).gameObject;
+            iconImg = iconObj.GetComponent<Image>();
             if (iconImg == null)
             {
                 Debug.LogError($"{nameof(iconImg)} : {nameof(Image)} is missing.");
             }
 
             // Check msg tmp component.
-            msgTMP = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            msgObj = transform.GetChild(2).gameObject;
+            msgTMP = msgObj.GetComponent<TextMeshProUGUI>();
             if (msgTMP == null)
             {
                 Debug.LogError($"{nameof(msgTMP)} : {nameof(TextMeshProUGUI)} is missing.");
             }
 
-            // Set msg to tmp text.
+            // Set tmp.
             {
                 msgString = "Use headphone for the best experience.";
                 msgTMP.text = msgString;
+                msgTMP.font = GameInstance.GameManager.Font;
             }
+        }
+
+        private void Start()
+        {
+ 
         }
 
         private void OnDestroy()
@@ -67,6 +79,7 @@ namespace Assets.Scripts.Title
         {
             var loadAssetTask = new TaskCompletionSource<bool>();
 
+            // Load icon img.
             iconAssetRef.LoadAssetAsync().Completed += (AsyncOperationHandle<Sprite> handle) =>
             {
                 addressableHandle = handle;
@@ -77,10 +90,38 @@ namespace Assets.Scripts.Title
 
             await loadAssetTask.Task;
         }
+
+        //public IEnumerator FadeIn(float duration = 1.5f)
+        //{
+
+        //}
+
+        //public IEnumerator FadeOut(float duration = 1.5f)
+        //{
+
+        //}
     }
 
     public partial class SplashRcmdMsgController
     {
+        public GameObject BckgObj
+        {
+            get { return bckgObj; }
+            set { bckgObj = value; }
+        }
+
+        public GameObject IconObj
+        {
+            get { return iconObj; }
+            set { iconObj = value; }
+        }
+
+        public GameObject MsgObj
+        {
+            get { return msgObj; }
+            set { msgObj = value; }
+        }
+
         public static readonly string BackgroundImgName = nameof(bckgImg);
         public static readonly string IconImgName = nameof(iconImg);
         public static readonly string MsgTMPName = nameof(msgTMP);

@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7648524499586225359}
-  - component: {fileID: 8786004088483092156}
+  - component: {fileID: 4965681624373972370}
   - component: {fileID: 7128845940761511026}
+  - component: {fileID: 4581427483567291628}
   m_Layer: 0
   m_Name: Splash_Timeline
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8786004088483092156
+--- !u!114 &4965681624373972370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,9 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   director: {fileID: 0}
-  recommendationMsgObj: {fileID: 1073795708029707809, guid: 21e2012ce900c8e4fb79a36cde4f6f2c,
+  rcmdMsgPrfb: {fileID: 1073795708029707809, guid: 21e2012ce900c8e4fb79a36cde4f6f2c,
     type: 3}
-  recommendationMsgCpnt: {fileID: 0}
+  rcmdMsgControllerCpnt: {fileID: 0}
 --- !u!320 &7128845940761511026
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -69,5 +70,86 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -106366377674957215, guid: 0b20f9aaf2ffbe14e904811bd3fb7451, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -5203901324444216329, guid: e77fd838f97cfc742b89227fced3a3c1, type: 2}
+    value: {fileID: 4581427483567291628}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &4581427483567291628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340044819760227639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: c9263e21e42f8ad4585ca43628c85a8a, type: 2}
+    - {fileID: 11400000, guid: 270b78222ec5bc9448f740f06ce8e550, type: 2}
+    - {fileID: 11400000, guid: e9e0ad7a4424f604284b62423bdf6ea8, type: 2}
+    - {fileID: 11400000, guid: 7a5202fa81e92f94cbe780a7489ad56a, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4965681624373972370}
+          m_TargetAssemblyTypeName: Assets.Scripts.Title.SplashTimelineController,
+            Assembly-CSharp
+          m_MethodName: StartRcmdMsg
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4965681624373972370}
+          m_TargetAssemblyTypeName: Assets.Scripts.Title.SplashTimelineController,
+            Assembly-CSharp
+          m_MethodName: FadeInRcmdMsg
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4965681624373972370}
+          m_TargetAssemblyTypeName: Assets.Scripts.Title.SplashTimelineController,
+            Assembly-CSharp
+          m_MethodName: FadeOutRcmdMsg
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4965681624373972370}
+          m_TargetAssemblyTypeName: Assets.Scripts.Title.SplashTimelineController,
+            Assembly-CSharp
+          m_MethodName: EndRcmdMsg
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

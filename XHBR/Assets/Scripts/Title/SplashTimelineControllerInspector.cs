@@ -18,7 +18,7 @@ public class SplashTimelineControllerInspector : Editor
 
         EditorGUILayout.LabelField("Compositions", EditorStyles.boldLabel);
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(SplashTimelineController.RecommendationMsgObjName));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(SplashTimelineController.RecommendationMsgPrfbName));
         }
 
         serializedObject.ApplyModifiedProperties();

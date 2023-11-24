@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9082778884567910440}
-  - component: {fileID: 1920536844417344977}
+  - component: {fileID: 2666297173818466777}
   m_Layer: 5
   m_Name: Splash_RcmdMsg
   m_TagString: Untagged
@@ -39,7 +39,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1920536844417344977
+--- !u!114 &2666297173818466777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,14 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de33b2052050dc64d9fadc055613249b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundImg: {fileID: 0}
+  bckgImg: {fileID: 0}
   iconImg: {fileID: 0}
   msgTMP: {fileID: 0}
   iconAssetRef:
     m_AssetGUID: d435096fa59e4e1438b9fe6bd4526503
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 1
+    m_EditorAssetChanged: 0
 --- !u!1 &6406023370273231149
 GameObject:
   m_ObjectHideFlags: 0
