@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Assets.Scripts.Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,15 +7,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets.Scripts.Title
 {
-    public partial class SplashRecommendationMsg : MonoBehaviour
+    public partial class SplashRcmdMsgController : MonoBehaviour
     {
-        [SerializeField] private Image                      backgroundImg;
+        [SerializeField] private Image                      bckgImg;
         [SerializeField] private Image                      iconImg;
         [SerializeField] private TextMeshProUGUI            msgTMP;
-        [SerializeField] private string                     msgString;
         [SerializeField] private AssetReferenceSprite       iconAssetRef;
-
+        private string                                      msgString;
         private AsyncOperationHandle                        addressableHandle;
+
 
         private void Awake()
         {
@@ -27,10 +26,10 @@ namespace Assets.Scripts.Title
             }
 
             // Check background img component.
-            backgroundImg = transform.GetChild(0).GetComponent<Image>();
-            if (backgroundImg == null)
+            bckgImg = transform.GetChild(0).GetComponent<Image>();
+            if (bckgImg == null)
             {
-                Debug.LogError($"{nameof(backgroundImg)} : {nameof(Image)} is missing.");
+                Debug.LogError($"{nameof(bckgImg)} : {nameof(Image)} is missing.");
             }
 
             // Check icon img component.
@@ -78,5 +77,13 @@ namespace Assets.Scripts.Title
 
             await loadAssetTask.Task;
         }
+    }
+
+    public partial class SplashRcmdMsgController
+    {
+        public static readonly string BackgroundImgName = nameof(bckgImg);
+        public static readonly string IconImgName = nameof(iconImg);
+        public static readonly string MsgTMPName = nameof(msgTMP);
+        public static readonly string IconAssetRefName = nameof(iconAssetRef);
     }
 }

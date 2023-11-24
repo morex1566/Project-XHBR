@@ -15,9 +15,9 @@ namespace Assets.Scripts.Game
     {
         public static GameInstance                                 GameManager;
 
-        private TMP_FontAsset                                      font;
         [SerializeField] private AssetReferenceT<TMP_FontAsset>    fontAssetRef;
 
+        private TMP_FontAsset                                      font;
         private Task                                               LoadAssetAsyncOperationHandle;
         private AsyncOperationHandle                               addressableHandle;
 
@@ -83,5 +83,7 @@ namespace Assets.Scripts.Game
             set { font = value; }
         }
         public static readonly string FontName = nameof(font);
+
+        public static readonly string FontAssetRef = nameof(fontAssetRef);
     }
 }

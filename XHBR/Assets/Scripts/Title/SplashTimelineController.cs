@@ -12,10 +12,10 @@ namespace Assets.Scripts.Title
     /// </summary>
     public partial class SplashTimelineController : MonoBehaviour
     {
-        [SerializeField] private Canvas                         canvas;
-        [SerializeField] private PlayableDirector               director;
-        [SerializeField] private GameObject                     recommendationMsgObj;
-        [SerializeField] private SplashRecommendationMsg        recommendationMsgCpnt;
+        [SerializeField] private Canvas                                   canvas;
+        [SerializeField] private PlayableDirector                         director;
+        [SerializeField] private GameObject                               recommendationMsgObj;
+        [SerializeField] private SplashRcmdMsgController        _rcmdMsgControllerCpnt;
 
         private Task                                            LoadAssetAsyncOperationHandle;
 
@@ -47,14 +47,14 @@ namespace Assets.Scripts.Title
                 obj.transform.SetParent(canvas.transform, false);
 
                 // Check splash img component.
-                recommendationMsgCpnt = obj.GetComponent<SplashRecommendationMsg>();
-                if (recommendationMsgCpnt == null)
+                _rcmdMsgControllerCpnt = obj.GetComponent<SplashRcmdMsgController>();
+                if (_rcmdMsgControllerCpnt == null)
                 {
-                    Debug.LogError($"{nameof(recommendationMsgCpnt)} : {nameof(SplashRecommendationMsg)} is missing.");
+                    Debug.LogError($"{nameof(_rcmdMsgControllerCpnt)} : {nameof(SplashRcmdMsgController)} is missing.");
                 }
 
                 // Load icon sprite.
-                LoadAssetAsyncOperationHandle = recommendationMsgCpnt.LoadAssetAsync();
+                LoadAssetAsyncOperationHandle = _rcmdMsgControllerCpnt.LoadAssetAsync();
             }
         }
 

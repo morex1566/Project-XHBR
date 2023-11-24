@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9082778884567910440}
   - component: {fileID: 1920536844417344977}
   m_Layer: 5
-  m_Name: Splash_RecommendationMsg
+  m_Name: Splash_RcmdMsg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,6 @@ MonoBehaviour:
   backgroundImg: {fileID: 0}
   iconImg: {fileID: 0}
   msgTMP: {fileID: 0}
-  msgString: 
   iconAssetRef:
     m_AssetGUID: d435096fa59e4e1438b9fe6bd4526503
     m_SubObjectName: 
@@ -206,7 +205,7 @@ GameObject:
   - component: {fileID: 2156600403794957942}
   - component: {fileID: 7122166771440809298}
   m_Layer: 5
-  m_Name: Splash_Background_Image
+  m_Name: Splash_Bckg_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +280,7 @@ GameObject:
   - component: {fileID: 5188796001876841314}
   - component: {fileID: 4753947792870550527}
   m_Layer: 5
-  m_Name: Splash_Icon_Image
+  m_Name: Splash_Icon_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
