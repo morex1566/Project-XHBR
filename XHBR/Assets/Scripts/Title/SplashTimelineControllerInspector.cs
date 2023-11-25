@@ -1,4 +1,3 @@
-using Assets.Scripts.Title;
 using UnityEditor;
 
 #if UNITY_EDITOR
@@ -18,7 +17,7 @@ public class SplashTimelineControllerInspector : Editor
 
         EditorGUILayout.LabelField("Compositions", EditorStyles.boldLabel);
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(SplashTimelineController.RecommendationMsgPrfbName));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(SplashTimelineController.RcmdMsgPrfbName));
         }
 
         serializedObject.ApplyModifiedProperties();

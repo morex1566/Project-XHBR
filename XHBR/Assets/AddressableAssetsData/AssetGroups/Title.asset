@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Lobby
+  m_Name: Title
   m_EditorClassIdentifier: 
-  m_GroupName: Lobby
+  m_GroupName: Title
   m_Data:
     m_SerializedData: []
   m_GUID: 19f20abd32380ba4aba072f9a501abd4
   m_SerializeEntries:
-  - m_GUID: a969aaa572921c9459c143c1da77c0f2
-    m_Address: Images/Lobby_Background_Image_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f5bbc0d2c6fddd64ea6685004ac5645a
-    m_Address: Images/Lobby_Background_Image_2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d435096fa59e4e1438b9fe6bd4526503
     m_Address: Assets/AddressableResources/Images/Lobby_Splash_Headphone.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec28280c8bbfc6341a0f5ac778f49d4c
+    m_Address: Assets/AddressableResources/Musics/Tutorial.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7a7cb790a7f7a84cac654c0681898ed
+    m_Address: Assets/AddressableResources/Images/Circle.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

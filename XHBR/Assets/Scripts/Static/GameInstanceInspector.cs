@@ -1,4 +1,3 @@
-using Assets.Scripts.Game;
 using UnityEditor;
 
 #if UNITY_EDITOR

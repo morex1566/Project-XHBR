@@ -1,4 +1,3 @@
-using Assets.Scripts.Title;
 using UnityEditor;
 
 #if UNITY_EDITOR
@@ -10,7 +9,10 @@ public class TitleInstanceInspector : Editor
     {
         EditorGUILayout.LabelField("Compositions", EditorStyles.boldLabel);
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(TitleInstance.SplashTimelineObjName));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(TitleInstance.SplashTimelinePrpbName));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(TitleInstance.AudioClipAssetRefName));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(TitleInstance.TitleBckgPrpbName));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(TitleInstance.TitleAudioSpectrumPrpbName));
         }
 
         serializedObject.ApplyModifiedProperties();
